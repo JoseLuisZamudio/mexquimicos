@@ -11,7 +11,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    {{--<script src="{{ asset('js/app.js') }}" defer></script>--}}
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     {{--<link rel="dns-prefetch" href="https://fonts.gstatic.com">--}}
@@ -25,6 +25,7 @@
     <link href="{{ asset('css/mdb.min.css') }}" rel="stylesheet">
     <!-- Your custom styles (optional) -->
     <link href="{{ asset('css/style.min.css') }}" rel="stylesheet">
+    {{-- <script language="JavaScript" type="text/javascript" src="/js/jquery-3.2.1.min.js"></script> --}}
 
     <!-- Styles -->
     {{--<link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
@@ -118,19 +119,14 @@
                 <!-- Left -->
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="{{ route('home') }}">Home
+                        <a class="nav-link" href="{{ route('home') }}">Inicio
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('productos.index')}}">Admin Productos</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://mdbootstrap.com/getting-started/" target="_blank">Free download</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://mdbootstrap.com/bootstrap-tutorial/" target="_blank">Free tutorials</a>
-                    </li>
+
                 </ul>
 
                 <!-- Right -->
@@ -162,16 +158,6 @@
                             </form>
                         </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('logout') }}"
-                           onclick="event.preventDefault();
-                                         document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    </li>
                     @endguest
                 </ul>
 
@@ -186,4 +172,16 @@
         </main>
     </div>
 </body>
+
+<script>
+$('#delete').on('show.bs.modal',function(event){
+  var button = $(event.relatedTarget)
+
+  var cat_id = button.data('catid')
+  var modal = $(this)
+
+  modal.find('.modal-body #cat_id').val(cat_id);
+})
+
+</script>
 </html>

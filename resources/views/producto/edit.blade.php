@@ -5,7 +5,7 @@
   <main class="mt-5 pt-4">
     <div class="container dark-grey-text mt-5">
       <!-- Default form login -->
-      <form method="POST" action="{{ route('productos.update',$producto->id) }}" enctype="multipart/form-data">
+      <form method="PUT" action="{{ route('productos.update',$producto->id) }}" onsubmit="return confirm('¿Estas seguro que quieres actualizar el registro?');" enctype="multipart/form-data">
           @csrf
         <p class="h4 text-center mb-4">Editar Producto</p>
 
@@ -33,10 +33,10 @@
         <label for="fecha_ingreso" class="grey-text">Fecha de Ingreso</label>
         <input type="date" id="fecha_ingreso" name="fecha_ingreso" class="form-control" value="{{$producto->fecha_ingreso}}">
 
-        <div class="form-group">
+        {{-- <div class="form-group">
           <label for="imagen">Imagen Producto</label>
           <input type="file" class="imagen" name="imagen" id="imagen">
-        </div>
+        </div> --}}
         <br>
 
         <div class="text-center mt-4">

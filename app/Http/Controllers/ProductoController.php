@@ -92,25 +92,27 @@ class ProductoController extends Controller
    */
   public function update(Request $request, $id)
   {
-    $producto = Producto::findOrFail($id);
-    $producto->nombre = $request->nombre;
-    $producto->u_medida = $request->u_medida;
-    $producto->cantidad = $request->cantidad;
-    $producto->precio_venta_mayoreo = $request->precio_venta_mayoreo;
-    $producto->precio_vente_menudeo = $request->precio_vente_menudeo;
-    $producto->fecha_ingreso = $request->fecha_ingreso;
+    // $producto = Producto::findOrFail($id);
+    // $producto->nombre = $request->nombre;
+    // $producto->u_medida = $request->u_medida;
+    // $producto->cantidad = $request->cantidad;
+    // $producto->precio_venta_mayoreo = $request->precio_venta_mayoreo;
+    // $producto->precio_vente_menudeo = $request->precio_vente_menudeo;
+    // $producto->fecha_ingreso = $request->fecha_ingreso;
+    //
+    //   $file = $request->file('imagen');
+    //   $path = public_path(). '/images/products';
+    //   $fileName = uniqid().Auth::user()->name.'.'.$file->getClientOriginalExtension();
+    //   $moved = $file->move($path, $fileName);
+    //
+    //   if($moved){
+    //     $producto->imagen = $fileName;
+    //       $producto->save();
+    //   }
+    //
+    //   return redirect()->route('productos.index');
 
-      $file = $request->file('imagen');
-      $path = public_path(). '/images/products';
-      $fileName = uniqid().Auth::user()->name.'.'.$file->getClientOriginalExtension();
-      $moved = $file->move($path, $fileName);
-
-      if($moved){
-        $producto->imagen = $fileName;
-          $producto->save();
-      }
-
-      return redirect()->route('productos.index');
+    return ('Hola');
   }
 
   /**
