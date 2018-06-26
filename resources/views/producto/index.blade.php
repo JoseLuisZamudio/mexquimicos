@@ -66,7 +66,7 @@
                                  <div class="modal-body">
                                    <div class="text-center">
                                      <i class="fa fa-times fa-4x mb-3 animated rotateIn"></i>
-                                     <p>¿Estas seguro que quieres eliminar el registro? Esta accion no se puede deshacer.</p>
+                                     <p>¿Estás seguro que quieres eliminar el registro? Esta acción no se puede deshacer.</p>
                                      <input type="hidden" name="category_id" id="cat_id" value="">
                                    </div>
                                  </div>
@@ -88,6 +88,16 @@
 
 </table>
 <!--Table-->
+<div class="card">
+    <div class="card-body">
+      <form action="/file-upload" class="dropzone">
+        <div class="fallback">
+          <input name="file" type="file" multiple />
+        </div>
+      </form>
+    </div>
+</div>
+
       </div>
   </main>
 

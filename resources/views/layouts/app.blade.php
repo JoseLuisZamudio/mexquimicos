@@ -118,16 +118,17 @@
 
                 <!-- Left -->
                 <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                      <a class="nav-link" href="{{ url('/') }}">Inicio
+                          <span class="sr-only">(current)</span>
+                      </a>
+                  </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="{{ route('home') }}">Inicio
+                        <a class="nav-link" href="{{ route('home') }}">Productos
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('productos.index')}}">Admin Productos</a>
-                    </li>
-
-                </ul>
+                  </ul>
 
                 <!-- Right -->
                 <ul class="navbar-nav nav-flex-icons">
@@ -141,6 +142,9 @@
                         <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                         <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                     @else
+                      <li class="nav-item">
+                          <a class="nav-link" href="{{route('productos.index')}}">Admin Productos</a>
+                      </li>
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{ Auth::user()->name }} <span class="caret"></span>
@@ -184,4 +188,5 @@ $('#delete').on('show.bs.modal',function(event){
 })
 
 </script>
+<script src="{{ asset('js/dropzone.js')}}"></script>
 </html>

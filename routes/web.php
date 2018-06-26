@@ -22,3 +22,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resources([
   'productos' => 'productoController'
 ]);
+
+Route::post('/productos/{id}/update','productoController@update')->name('update');
+
+Route::resources([
+  'shopingCart' => 'ShopingCartController'
+]);
