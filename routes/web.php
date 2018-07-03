@@ -38,3 +38,5 @@ Route::resources([
 Route::resources([
   'ventas' => 'VentasController'
 ]);
+
+Route::get('/ticket', 'CuentaController@pdf');

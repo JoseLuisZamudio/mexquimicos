@@ -53,7 +53,7 @@
 
                   <!-- Table body -->
                   <tbody>
-
+                    <?php $sum = 0; ?>
                     @foreach (auth()->user()->cuenta->detalles as $detalle)
 
                       <!-- First row -->
@@ -88,7 +88,13 @@
                       </td>
                     </tr>
                     <!-- /.First row -->
+                    <?php $sum += $detalle->precio * $detalle->cantidad; ?>
                   @endforeach
+                  <tr class="text-right">
+                                      <td></td>
+                                      <td><h3>TOTAL ${{ $sum }}</h3></td>
+                                      
+                                    </tr>
                   <!-- Second row -->
                 </tbody>
                 <!-- /.Table body -->
