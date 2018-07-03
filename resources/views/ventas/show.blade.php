@@ -20,7 +20,7 @@
 
           <div class="card">
             <div class="card-body">
-              <p>Tienes {{auth()->user()->cuenta->detalles->count()}} productos en el carrito de compras.</p>
+              <p>Tienes {{auth()->user()->compra->detalles->count()}} productos en el carrito de compras.</p>
               <!-- Shopping Cart table -->
               <div class="table-responsive">
 
@@ -54,7 +54,7 @@
                   <!-- Table body -->
                   <tbody>
 
-                    @foreach (auth()->user()->cuenta->detalles as $detalle)
+                    @foreach (auth()->user()->compra->detalles as $detalle)
 
                       <!-- First row -->
                       <tr>
@@ -68,10 +68,18 @@
                         </td>
                         <td>{{$detalle->producto->u_medida}}</td>
                         <td></td>
-                        <td>${{ $detalle->precio }}</td>
-                        <td>{{ $detalle->cantidad }}</td>
+                        <td>
+                          @if ($detalle->cantidad < 10)
+                            ${{$precio = $detalle->producto->precio_vente_menudeo}}
+                          @else
+                            ${{$precio = $detalle->producto->precio_venta_mayoreo}}
+                          @endif
+                        </td>
+                        <td>
+                          <input type="number" value="{{ $detalle->cantidad }}" aria-label="Search" class="form-control" style="width: 100px">
+                        </td>
                         <td class="font-weight-bold">
-                          <strong>${{ $detalle->cantidad * $detalle->precio}}</strong>
+                          <strong>{{ $detalle->cantidad * $precio}}</strong>
                         </td>
                         <td>
                           <a  class="btn btn-sm btn-primary" href="{{route('productos.show',$detalle->producto->id)}}" target="_blank">

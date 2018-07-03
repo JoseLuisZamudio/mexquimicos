@@ -16,7 +16,7 @@ class ProductoController extends Controller
    */
   public function index()
   {
-    $productos = Producto::all();
+      $productos = Producto::paginate(6);
       return view('producto.index',compact('productos'));
   }
 
@@ -115,7 +115,6 @@ class ProductoController extends Controller
       $producto->save();
       return redirect()->route('productos.index');
 
-    // return ('Hola');
   }
 
   /**
@@ -128,7 +127,7 @@ class ProductoController extends Controller
   {
       $producto = Producto::findOrFail($id);
       $producto->delete();
-
-        return redirect()->route('productos.index');
+      
+        return redirect()->route('productos.index')->with('notification','El producto ha sido eliminado correctamente.');
   }
 }

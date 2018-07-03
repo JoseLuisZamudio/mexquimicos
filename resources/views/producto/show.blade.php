@@ -11,7 +11,8 @@
           <!--Grid column-->
           <div class="col-md-6 mb-4">
 
-            <img src="{{asset('images/products')}}/{{$producto->imagen}}" class="img-fluid" alt="">
+            {{-- <img src="{{asset('images/products')}}/{{$producto->imagen}}" class="img-fluid" alt=""> --}}
+            <img src="{{$producto->imagen}}" class="img-fluid" alt="">
 
           </div>
           <!--Grid column-->
@@ -47,14 +48,40 @@
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et dolor suscipit libero eos atque quia ipsa sint voluptatibus!
                 Beatae sit assumenda asperiores iure at maxime atque repellendus maiores quia sapiente.</p>
 
-              <form class="d-flex justify-content-left">
-                <!-- Default input -->
-                <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px">
-                <button class="btn btn-primary btn-md my-0 p" type="submit">Add to cart
+
+                <button class="btn btn-primary btn-md my-0 p" data-toggle="modal" data-target="#modalAddToCart">Añadir al carrito
                   <i class="fa fa-shopping-cart ml-1"></i>
                 </button>
 
-              </form>
+                <div class="modal fade" id="modalAddToCart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-notify modal-info" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <p class="heading lead">Añadir producto al carrito de compras</p>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true" class="white-text">&times;</span>
+                        </button>
+                      </div>
+                      <form method="POST" action="{{ url('/shopingCart') }}">
+                        {!! csrf_field() !!}
+                        <div class="modal-body">
+                          <div class="text-center">
+                            <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
+                            <p>Seleccione la cantidad que desea agregar</p>
+                            <input type="number" name="cantidad" value="1" class="form-control">
+                            <input type="hidden" name="producto_id" value="{{$producto->id}}">
+                            <input type="hidden" name="precio_mayoreo" value="{{$producto->precio_venta_mayoreo}}">
+                            <input type="hidden" name="precio_menudeo" value="{{$producto->precio_vente_menudeo}}">
+                          </div>
+                        </div>
+                        <div class="modal-footer justify-content-center">
+                          <button type="button" class="btn btn-outline-info waves-effect" data-dismiss="modal">No, cancelar</button>
+                          <button type="submit" class="btn btn-info">Si, añadir al carrito</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
 
             </div>
             <!--Content-->

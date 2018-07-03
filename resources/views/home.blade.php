@@ -50,7 +50,8 @@
 
                   <!--Card image-->
                   <div class="view overlay z-depth-1">
-                    <img src="{{asset('images/products')}}/{{$producto->imagen}}" class="card-img-top" alt="">
+                    {{-- <img src="{{asset('images/products')}}/{{$producto->imagen}}" class="card-img-top" alt=""> --}}
+                    <img src="{{$producto->imagen}}" class="card-img-top" alt="">
                     <a href="{{ route('productos.show',$producto->id) }}">
                       <div class="mask rgba-white-slight"></div>
                     </a>
@@ -99,7 +100,9 @@
 
           </div>
           <!--Grid row-->
-
+          <div class="row">
+            {{$productos->links()}}
+          </div>
         </section>
         <!--Section: Products v.3-->
 

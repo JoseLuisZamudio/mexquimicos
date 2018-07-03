@@ -14,7 +14,7 @@ class ShopingCartController extends Controller
      */
     public function index()
     {
-        return view('shopingCart.index'); 
+        return view('shopingCart.index');
     }
 
     /**
@@ -35,7 +35,20 @@ class ShopingCartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      if ($request->cantidad < 10) {
+        $precio = $request->precio_menudeo;
+      }else {
+        $precio = $request->precio_mayoreo;
+      }
+
+        $carrito = new ShopingCart;
+        $carrito->cuenta_id = auth()->user()->cuenta->id;
+        $carrito->producto_id = $request->producto_id;
+        $carrito->cantidad = $request->cantidad;
+        $carrito->precio = $precio;
+        $carrito->save();
+
+        return back();
     }
 
     /**
@@ -78,8 +91,12 @@ class ShopingCartController extends Controller
      * @param  \App\ShopingCart  $shopingCart
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ShopingCart $shopingCart)
+    public function destroy(Request $request)
     {
-        //
+        $producto = ShopingCart::findOrFail($request->articulo_id);
+        $producto->delete();
+        // return $producto;
+
+        return redirect()->route('shopingCart.index')->with('notification','El producto ha sido eliminado');
     }
 }

@@ -24,7 +24,17 @@ Route::resources([
 ]);
 
 Route::post('/productos/{id}/update','productoController@update')->name('update');
+Route::delete('carrito', 'ShopingCartController@destroy')->name('delete');
+
+Route::post('/pedido','CuentaController@update');
+Route::get('/pdf','VentasController@pdf');
+
+// Route::post('/productos/{id}/update','productoController@update')->name('update');
 
 Route::resources([
   'shopingCart' => 'ShopingCartController'
+]);
+
+Route::resources([
+  'ventas' => 'VentasController'
 ]);

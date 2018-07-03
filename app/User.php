@@ -26,4 +26,28 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function cuentas(){
+      return $this->hasMany(Cuenta::class);
+    }
+
+    public function getCuentaAttribute(){
+      $cuenta = $this->cuentas()->where('status', 'Active')->first();
+      if ($cuenta) {
+        return $cuenta;
+      }else {
+        $cuenta = new Cuenta();
+        $cuenta->status = 'Active';
+        $cuenta->user_id = $this->id;
+        $cuenta->save();
+        return $cuenta;
+      }
+    }
+
+    // public function getCompraAttribute(){
+    //   $cuenta = $this->cuentas()->where('status','!=', 'Active')->get();
+    //   if ($cuenta) {
+    //     return $cuenta;
+    //   }
+    // }
 }
